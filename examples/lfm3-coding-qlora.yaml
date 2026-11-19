@@ -1,0 +1,22 @@
+model: .runtime/coding-mlx/model
+data: .runtime/coding-mlx/data
+train: true
+fine_tune_type: lora
+adapter_path: runs/coding-mlx-lora/adapter
+seed: 917
+num_layers: 12
+batch_size: 1
+iters: 256
+val_batches: 16
+learning_rate: 0.00003
+steps_per_report: 16
+steps_per_eval: 64
+save_every: 64
+max_seq_length: 1024
+grad_checkpoint: true
+mask_prompt: true
+lora_parameters:
+  keys: ["feed_forward.w1", "feed_forward.w2", "feed_forward.w3"]
+  rank: 8
+  scale: 16.0
+  dropout: 0.0

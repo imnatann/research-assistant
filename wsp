@@ -1,0 +1,24 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")"
+if [ "${1:-}" = setup ]; then
+    uv venv --allow-existing --python 3.12 .venv-wsp
+    exec uv pip sync --python .venv-wsp/bin/python requirements-wsp.txt
+fi
+if [ ! -x .venv-wsp/bin/python ]; then
+    printf '%s\n' 'Run ./wsp setup to install the weight-space environment.' >&2
+    exit 1
+fi
+if [ "${1:-}" = bench ]; then
+    shift
+    exec .venv-wsp/bin/python -m research_assistant.agentic_bench "$@"
+fi
+if [ "${1:-}" = code ]; then
+    shift
+    exec .venv-wsp/bin/python -m research_assistant.coding_eval "$@"
+fi
+if [ "${1:-}" = export-lora ]; then
+    shift
+    exec .venv-wsp/bin/python -m research_assistant.lora_export "$@"
+fi
+exec .venv-wsp/bin/python -m research_assistant.weightspace "$@"

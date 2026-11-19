@@ -1,0 +1,537 @@
+{
+  "date": "2026-11-18",
+  "runtime": "llama.cpp b12359",
+  "device": "Apple M1 Pro, 16 GB",
+  "coding": {
+    "dataset": "MBPP Sanitized",
+    "dataset_sha256": "ca95deaa9a01ef0a6f439f88bcf0dd3db3563d22f22aad6cae04ebb9a8d8c8e9",
+    "selection_seed": 917,
+    "temperature": 0,
+    "max_tokens": 768,
+    "task_ids": {
+      "write-python": [
+        71,
+        74,
+        77,
+        79,
+        87,
+        130,
+        141,
+        162,
+        172,
+        223,
+        226,
+        230,
+        240,
+        259,
+        281,
+        287,
+        291,
+        295,
+        306,
+        393,
+        406,
+        412,
+        432,
+        452
+      ],
+      "repair-one-tool-call": [
+        71,
+        74,
+        77,
+        79,
+        87,
+        130,
+        141,
+        162,
+        172,
+        223,
+        226,
+        230
+      ]
+    },
+    "variants": [
+      {
+        "model": "LFM3-1.7B Q4_K_M",
+        "task": "write-python",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4"
+        },
+        "passed": 10,
+        "total": 24,
+        "passed_task_ids": [
+          79,
+          141,
+          223,
+          226,
+          230,
+          240,
+          281,
+          406,
+          412,
+          452
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M",
+        "task": "repair-one-tool-call",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4"
+        },
+        "passed": 5,
+        "total": 12,
+        "passed_task_ids": [
+          71,
+          77,
+          172,
+          223,
+          230
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M with Python prefill",
+        "task": "write-python",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4"
+        },
+        "passed": 12,
+        "total": 24,
+        "passed_task_ids": [
+          71,
+          77,
+          79,
+          162,
+          172,
+          223,
+          226,
+          230,
+          240,
+          281,
+          287,
+          406
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M with QLoRA step 64",
+        "task": "write-python",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+          "adapter_sha256": "a23b9bc619da9681586d430ab77f8b216dd48a775f2285a4aaf95bd0c25e94ee"
+        },
+        "passed": 7,
+        "total": 24,
+        "passed_task_ids": [
+          79,
+          172,
+          223,
+          226,
+          230,
+          281,
+          406
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M with QLoRA step 64",
+        "task": "repair-one-tool-call",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+          "adapter_sha256": "a23b9bc619da9681586d430ab77f8b216dd48a775f2285a4aaf95bd0c25e94ee"
+        },
+        "passed": 5,
+        "total": 12,
+        "passed_task_ids": [
+          77,
+          141,
+          172,
+          226,
+          230
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M with QLoRA step 256",
+        "task": "write-python",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+          "adapter_sha256": "6d7882cbc2f122856d912b344c0dce890e3997798e32ba449b6e5d1db1d344ca"
+        },
+        "passed": 7,
+        "total": 24,
+        "passed_task_ids": [
+          79,
+          223,
+          226,
+          281,
+          393,
+          406,
+          412
+        ]
+      },
+      {
+        "model": "LFM3-1.7B Q4_K_M with QLoRA step 256",
+        "task": "repair-one-tool-call",
+        "weights": {
+          "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+          "adapter_sha256": "6d7882cbc2f122856d912b344c0dce890e3997798e32ba449b6e5d1db1d344ca"
+        },
+        "passed": 4,
+        "total": 12,
+        "passed_task_ids": [
+          77,
+          79,
+          172,
+          230
+        ]
+      },
+      {
+        "model": "LFM3-1.7B QAD-Q4_0",
+        "task": "write-python",
+        "weights": {
+          "sha256": "43a7d09a0e9cba91b63eb7052488b9564569bddfd65754d2e426465e572a7452"
+        },
+        "passed": 13,
+        "total": 24,
+        "passed_task_ids": [
+          71,
+          79,
+          141,
+          223,
+          226,
+          230,
+          240,
+          281,
+          287,
+          393,
+          406,
+          412,
+          432
+        ]
+      },
+      {
+        "model": "LFM3-1.7B QAD-Q4_0",
+        "task": "repair-one-tool-call",
+        "weights": {
+          "sha256": "43a7d09a0e9cba91b63eb7052488b9564569bddfd65754d2e426465e572a7452"
+        },
+        "passed": 4,
+        "total": 12,
+        "passed_task_ids": [
+          77,
+          130,
+          172,
+          223
+        ]
+      },
+      {
+        "model": "K2-Horizon-7B Q4_K_M",
+        "task": "write-python",
+        "weights": {
+          "sha256": "eb89c15a0ae9712be2ee462bf43802de14200f20f93b73da6eb68c2ebdd28e4e"
+        },
+        "passed": 15,
+        "total": 24,
+        "passed_task_ids": [
+          71,
+          77,
+          130,
+          141,
+          162,
+          172,
+          230,
+          240,
+          281,
+          287,
+          291,
+          406,
+          412,
+          432,
+          452
+        ]
+      },
+      {
+        "model": "K2-Horizon-7B Q4_K_M",
+        "task": "repair-one-tool-call",
+        "weights": {
+          "sha256": "eb89c15a0ae9712be2ee462bf43802de14200f20f93b73da6eb68c2ebdd28e4e"
+        },
+        "passed": 7,
+        "total": 12,
+        "passed_task_ids": [
+          71,
+          130,
+          141,
+          162,
+          172,
+          223,
+          230
+        ]
+      }
+    ]
+  },
+  "agentic": [
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "terminal-bench",
+      "version": "4.1.0",
+      "revision": "4070d6cef56a7d20cb5dc98d5e10ada88a6b9440",
+      "task": "session-window-debug",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": null,
+      "kv_cache": "f16",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": null,
+      "rewards": {
+        "reward": 0.0
+      },
+      "tool_activity": {
+        "calls": {
+          "read": 8,
+          "bash": 5,
+          "grep": 1
+        },
+        "calls_before_first_edit_tool": null
+      }
+    },
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "terminal-bench",
+      "version": "4.1.0",
+      "revision": "4070d6cef56a7d20cb5dc98d5e10ada88a6b9440",
+      "task": "session-window-debug",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": 512,
+      "kv_cache": "f16",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0.0
+      },
+      "tool_activity": {
+        "calls": {
+          "read": 16,
+          "bash": 32,
+          "write": 7,
+          "edit": 8
+        },
+        "calls_before_first_edit_tool": 19
+      }
+    },
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "terminal-bench",
+      "version": "4.1.0",
+      "revision": "4070d6cef56a7d20cb5dc98d5e10ada88a6b9440",
+      "task": "session-window-debug",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": null,
+      "kv_cache": "f16",
+      "edit_test_workflow": false,
+      "status": "error",
+      "exception": "AgentSetupTimeoutError",
+      "rewards": {},
+      "tool_activity": null
+    },
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "deepswe",
+      "version": "1.1",
+      "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+      "task": "go-critic-doc-link-checker",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": null,
+      "kv_cache": "f16",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0,
+        "f2p_total": 3,
+        "f2p_passed": 0,
+        "p2p_total": 16,
+        "p2p_passed": 16,
+        "f2p": 0.0,
+        "p2p": 1.0,
+        "partial": 0.8421052631578947
+      },
+      "tool_activity": null
+    },
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "deepswe",
+      "version": "1.1",
+      "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+      "task": "go-critic-doc-link-checker",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": 512,
+      "kv_cache": "f16",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0,
+        "f2p_total": 3,
+        "f2p_passed": 0,
+        "p2p_total": 16,
+        "p2p_passed": 16,
+        "f2p": 0.0,
+        "p2p": 1.0,
+        "partial": 0.8421052631578947
+      },
+      "tool_activity": {
+        "calls": {
+          "bash": 34,
+          "read": 22,
+          "edit": 3
+        },
+        "calls_before_first_edit_tool": 55
+      }
+    },
+    {
+      "model": "LFM3-1.7B-Q4_K_M",
+      "sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+      "suite": "deepswe",
+      "version": "1.1",
+      "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+      "task": "go-critic-doc-link-checker",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": 512,
+      "kv_cache": "f16",
+      "edit_test_workflow": true,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0,
+        "f2p_total": 3,
+        "f2p_passed": 0,
+        "p2p_total": 16,
+        "p2p_passed": 16,
+        "f2p": 0.0,
+        "p2p": 1.0,
+        "partial": 0.8421052631578947
+      },
+      "tool_activity": {
+        "calls": {
+          "bash": 23,
+          "read": 14
+        },
+        "calls_before_first_edit_tool": null
+      }
+    },
+    {
+      "model": "K2-Horizon-7B-Q4_K_M",
+      "sha256": "eb89c15a0ae9712be2ee462bf43802de14200f20f93b73da6eb68c2ebdd28e4e",
+      "suite": "terminal-bench",
+      "version": "4.1.0",
+      "revision": "4070d6cef56a7d20cb5dc98d5e10ada88a6b9440",
+      "task": "session-window-debug",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": 512,
+      "kv_cache": "q4_0",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0.0
+      },
+      "tool_activity": {
+        "calls": {
+          "bash": 2,
+          "read": 14
+        },
+        "calls_before_first_edit_tool": null
+      },
+      "idle_sleep": true
+    },
+    {
+      "model": "K2-Horizon-7B-Q4_K_M",
+      "sha256": "eb89c15a0ae9712be2ee462bf43802de14200f20f93b73da6eb68c2ebdd28e4e",
+      "suite": "deepswe",
+      "version": "1.1",
+      "revision": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+      "task": "go-critic-doc-link-checker",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 65536,
+      "reasoning_budget": 512,
+      "kv_cache": "q4_0",
+      "edit_test_workflow": false,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0,
+        "f2p_total": 3,
+        "f2p_passed": 0,
+        "p2p_total": 16,
+        "p2p_passed": 16,
+        "f2p": 0.0,
+        "p2p": 1.0,
+        "partial": 0.8421052631578947
+      },
+      "tool_activity": {
+        "calls": {
+          "bash": 4,
+          "read": 11
+        },
+        "calls_before_first_edit_tool": null
+      }
+    },
+    {
+      "model": "K2-Horizon-7B-Q4_K_M",
+      "sha256": "eb89c15a0ae9712be2ee462bf43802de14200f20f93b73da6eb68c2ebdd28e4e",
+      "suite": "terminal-bench",
+      "version": "4.1.0",
+      "revision": "4070d6cef56a7d20cb5dc98d5e10ada88a6b9440",
+      "task": "session-window-debug",
+      "agent": "OpenCode 1.19.6",
+      "agent_seconds": 420,
+      "context_tokens": 32768,
+      "reasoning_budget": 512,
+      "kv_cache": "q4_0",
+      "edit_test_workflow": true,
+      "status": "fail",
+      "exception": "AgentTimeoutError",
+      "rewards": {
+        "reward": 0.0
+      },
+      "tool_activity": {
+        "calls": {
+          "bash": 3,
+          "read": 8
+        },
+        "calls_before_first_edit_tool": null
+      }
+    }
+  ],
+  "weight_space_thinking_token_probe": {
+    "baseline": {
+      "passed": 3,
+      "total": 4,
+      "median_generated_tokens": 882.5
+    },
+    "edited": {
+      "passed": 3,
+      "total": 4,
+      "median_generated_tokens": 882.5
+    }
+  }
+}

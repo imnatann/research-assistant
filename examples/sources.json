@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Synthetic example — Citation support with and without an audit",
+    "url": "https://example.org/",
+    "authors": [
+      "Illustrative example"
+    ],
+    "year": "2026",
+    "passages": [
+      {
+        "section": "Methods (synthetic)",
+        "text": "The mock study compared two drafting pipelines on the same 30 literature questions. Each pipeline used the same English passages and generated English and Indonesian drafts. A human reviewer classified factual claims according to whether the cited passage supported them."
+      },
+      {
+        "section": "Results (synthetic)",
+        "text": "In this illustrative dataset, unsupported claims fell from 12 of 60 to 6 of 60 in the Indonesian drafts after adding the audit. The English drafts had 5 unsupported claims of 60 in both conditions. The study did not measure citation recall or publication readiness."
+      }
+    ]
+  }
+]

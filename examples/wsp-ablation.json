@@ -1,0 +1,12 @@
+{
+  "base_sha256": "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4",
+  "hypothesis": "Ablating 128 gate units in the final FFN is a positive control for the patch writer. The bilingual probe checks for gross behavioral regressions.",
+  "edits": [
+    {
+      "tensor": "blk.23.ffn_gate.weight",
+      "ranges": [[0, 128], [0, 2048]],
+      "op": "set",
+      "value": 0
+    }
+  ]
+}
