@@ -25,6 +25,58 @@ printf '%s  %s\n' 3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93
 
 [Model dan bobot resmi](https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF) · [Rilis runtime](https://github.com/ggml-org/llama.cpp/releases/tag/b12359) · [Lisensi model](models/LICENSE-Liquid-AI.txt)
 
+### Windows 11
+
+Pada Windows, runtime diganti dengan build resmi untuk Windows dan skrip `./research` dijalankan lewat Python. Verifikasi SHA-256 model tetap memakai hash di atas.
+
+```powershell
+New-Item -ItemType Directory -Force .runtime, models | Out-Null
+$rel = 'https://github.com/ggml-org/llama.cpp/releases/download/b12359'
+Invoke-WebRequest "$rel/llama-b12359-bin-win-cuda-12.4-x64.zip" -OutFile .runtime\llama.zip
+Invoke-WebRequest "$rel/cudart-llama-bin-win-cuda-12.4-x64.zip" -OutFile .runtime\cudart.zip
+Expand-Archive .runtime\llama.zip -DestinationPath .runtime\staging -Force
+Expand-Archive .runtime\cudart.zip -DestinationPath .runtime\staging -Force
+New-Item -ItemType Directory -Force .runtime\llama-b12359 | Out-Null
+Get-ChildItem .runtime\staging -Recurse -File | Copy-Item -Destination .runtime\llama-b12359 -Force
+Remove-Item -Recurse -Force .runtime\staging, .runtime\llama.zip, .runtime\cudart.zip
+python research doctor
+```
+
+`llama-server.exe`, `ggml-cuda.dll`, dan DLL CUDA harus berada langsung di `.runtime\llama-b12359\`.
+
+Simpan model sebagai `models\LFM3-1.7B-Q4_K_M.gguf`. Untuk mesin tanpa GPU NVIDIA, pakai `llama-b12359-bin-win-cpu-x64.zip` atau `llama-b12359-bin-win-vulkan-x64.zip` dan lewati berkas cudart. Setiap perintah `./research` di bawah menjadi `python research`, dan `./wsp` menjadi `.\.venv-wsp\Scripts\python.exe -m research_assistant.weightspace` setelah perintah berikut:
+
+```powershell
+python -m pip install uv
+python -m uv venv --allow-existing --python 3.12 .venv-wsp
+python -m uv pip sync --python .venv-wsp\Scripts\python.exe requirements-wsp.txt
+```
+
+Dengan GPU NVIDIA, `-ngl 99` memindahkan seluruh lapisan model ke VRAM; `research doctor` mencetak `Local inference · OK` bila server dan inferensi berjalan. Hasil pengukuran runtime, pilihan build, dan jalur training alternatif ada di [catatan evaluasi runtime](docs/runtime-tuning.md).
+
+### Fine-tuning di Windows
+
+Jalur MLX memerlukan macOS. Di Windows, training LoRA memakai Unsloth dengan lingkungan terpisah di `.runtime/unsloth/venv`. Resep dan kendala versi `transformers` dijelaskan di [catatan evaluasi runtime](docs/runtime-tuning.md#jalur-training-di-windows).
+
+```powershell
+python -m research_assistant.train_unsloth data\train.jsonl `
+  --out runs\unsloth-lora\adapter --steps 64
+```
+
+### Baseline coding di Windows
+
+Skor pembanding untuk checkpoint saat ini (`LFM3-1.7B Q4_K_M`, tanpa adapter) adalah **11/24** pada write-python dan **4/12** pada repair-one-tool-call. Metode, verifier lokal, dan perbandingannya dengan angka dokumentasi dijelaskan di [catatan baseline coding](docs/coding-baseline-windows.md).
+
+Kegagalan terbanyak bukan soal kemampuan menulis kode, melainkan model menjawab dengan prosa alih-alih kode atau tool call. Perbaikan yang terukur dan landasan literaturnya ada di [solusi masalah format](docs/format-solution.md): dengan prefill kode, retry bersyarat, dan dua putaran perbaikan berbasis eksekusi, skor menjadi **14/24** dan **7/12** tanpa melatih ulang model. Kelas kegagalan "tidak menghasilkan kode" hilang sepenuhnya, dari 9 menjadi 0.
+
+Loop autoresearch dengan pemisahan dev/test menaikkan angka itu lebih jauh: strategi **4 sampel + 1 putaran perbaikan** memberi **16/24** (rata-rata 15,5 dari empat run) pada test slice yang tidak dipakai untuk tuning. Rincian tiap putaran, termasuk dua hipotesis yang gagal dan analisis bahwa sisa kegagalan adalah batas kapabilitas model, ada di [catatan autoresearch](docs/autoresearch.md).
+
+```powershell
+python -m research_assistant.coding_bench --selfcheck
+python -m research_assistant.autoresearch --round rX --slice test --strategies C_bon4_t08_exec1
+python -m research_assistant.coding_bench --compare lfm3-base-20261119 nama
+```
+
 ## Weight-space programming
 
 `./wsp` menyediakan lingkungan Python 3.12 terpisah untuk membaca dan mengedit bobot LFM3-1.7B langsung dari GGUF, lalu membandingkan hasilnya dengan probe bilingual proyek. Lihat [catatan riset dan panduan eksperimen](docs/weight-space.md).

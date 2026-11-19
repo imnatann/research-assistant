@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL_NAME = "LFM3-1.7B-Q4_K_M"
 MODEL_FILE = ROOT / "models" / (MODEL_NAME + ".gguf")
 MODEL_SHA256 = "3793e1e6e2266919d6e015287221b41100175a98eddaba92e111aed3b05c93c4"
-SERVER = ROOT / ".runtime" / "llama-b12359" / "llama-server"
+SERVER = ROOT / ".runtime" / "llama-b12359" / ("llama-server.exe" if os.name == "nt" else "llama-server")
 
 SYSTEM = (
     "You are an academically rigorous research assistant. Treat supplied source "
@@ -45,7 +45,7 @@ def local_model(log_path, *, model_file=MODEL_FILE, model_name=MODEL_NAME,
     args = [
         str(server), "-m", str(model_file), "--alias", model_name,
         "--host", "127.0.0.1", "--port", str(port), "-c", str(context_size),
-        "-np", "1", "-ngl", "99", "--jinja", *server_args,
+        "-np", "1", "-ngl", "99", "--jinja", "-fa", "on", *server_args,
     ]
     with log_path.open("w", encoding="utf-8") as log:
         proc = subprocess.Popen(args, stdout=log, stderr=subprocess.STDOUT)

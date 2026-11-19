@@ -1,0 +1,18 @@
+# Unsloth + LFM3 training environment (Windows, CUDA)
+#
+# Install order matters on Windows: torchao must be present before
+# `uv pip install unsloth --torch-backend=auto`, otherwise the resolver
+# silently picks an old Unsloth.
+#
+#   python -m uv venv --python 3.12 .runtime/unsloth/venv
+#   python -m uv pip install --python .runtime/unsloth/venv/Scripts/python.exe torchao
+#   python -m uv pip install --python .runtime/unsloth/venv/Scripts/python.exe unsloth --torch-backend=auto
+#   python -m uv pip install --python .runtime/unsloth/venv/Scripts/python.exe -r requirements-unsloth.txt
+#
+# transformers is pinned because LFM3's modeling code needs both:
+#   * layer_types still containing "conv"  -> transformers <= 5.14
+#   * transformers.integrations.use_kernel_func_from_hub_with_fallback
+#                                          -> transformers >= 5.15
+# 5.14.0 satisfies the first; the second is covered by the identity-decorator
+# shim in research_assistant/train_unsloth.py. Do not bump without re-testing.
+transformers==5.14.0

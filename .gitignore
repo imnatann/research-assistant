@@ -4,6 +4,7 @@
 /.venv/
 /.venv-wsp/
 /runs/
+unsloth_compiled_cache/
 /.env
 /.env.*
 .DS_Store
